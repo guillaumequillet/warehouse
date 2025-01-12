@@ -7,7 +7,12 @@ class Window < Gosu::Window
     super(640, 480, false)
     self.caption = 'Warehouse'
 
-    @blueprint = Blueprint.new(32, 20, 20)
+    @warehouse = Warehouse.new(20, 20)
+    
+    @racks = []
+    @racks.push Rack.new(4, 4, 3, 4, :bottom)
+    @racks.push Rack.new(4, 3, 3, 4, :top)
+    @racks.each {|rack| @warehouse.add_rack(rack)}
   end
 
   def button_down(id)
@@ -20,7 +25,7 @@ class Window < Gosu::Window
   end
 
   def draw
-    @blueprint.draw
+    @warehouse.draw_blueprint
   end
 end
 
